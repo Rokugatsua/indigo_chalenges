@@ -89,9 +89,9 @@ func checking_attack_zones():
 		for j in height:
 			if slots[i][j]:
 				for zone in slots[i][j].attack(Vector2(i,j)):
-					if zone.x > 0 and zone.x < width:
-						if zone.y > 0 and zone.y < height:
-							attack_zones[zone.x][zone.y] = Vector2(zone.x,zone.y)
+					if zone.x >= 0 and zone.x < width:
+						if zone.y >= 0 and zone.y < height:
+							attack_zones[zone.x][zone.y] = true
 
 
 func reset_board():
