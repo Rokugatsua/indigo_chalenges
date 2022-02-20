@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://Board/BoardRes.gd" type="Script" id=1]
+[ext_resource path="res://Blocks/BlockRock.tres" type="Resource" id=2]
+[ext_resource path="res://Blocks/BlockBishop.tres" type="Resource" id=3]
+[ext_resource path="res://Blocks/BlockKnight.tres" type="Resource" id=4]
+[ext_resource path="res://Blocks/BlockDragon.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+width = 9
+height = 6
+blocks = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]

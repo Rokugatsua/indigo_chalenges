@@ -1,0 +1,250 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Board/BoardDisplay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/PausedMenu.gd" type="Script" id=2]
+[ext_resource path="res://Asset/blockSlot.png" type="Texture" id=3]
+[ext_resource path="res://UI/SlotBlockUI.gd" type="Script" id=4]
+[ext_resource path="res://UI/ScoreUI.gd" type="Script" id=5]
+[ext_resource path="res://UI/TimerUI.gd" type="Script" id=6]
+[ext_resource path="res://Asset/grey_button02.png" type="Texture" id=7]
+[ext_resource path="res://UI/KennyFuture.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Asset/red_panel.png" type="Texture" id=9]
+[ext_resource path="res://UI/KennyFutureThin.tres" type="DynamicFont" id=10]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 100, 100 )
+margin_left = 24.1271
+margin_right = 27.2071
+margin_top = 24.1271
+margin_bottom = 28.2338
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Main" type="Node2D"]
+
+[node name="BoardDisplay" parent="." instance=ExtResource( 1 )]
+pause_mode = 1
+
+[node name="ToBoardCheckingTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RightUI" type="Control" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/RightUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -160.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreUI" type="Control" parent="CanvasLayer/RightUI/VBoxContainer"]
+margin_top = 96.0
+margin_right = 160.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource( 5 )
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/RightUI/VBoxContainer/ScoreUI"]
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 8 )
+text = "Score : 0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextBlockUI" type="VBoxContainer" parent="CanvasLayer/RightUI/VBoxContainer"]
+margin_top = 277.0
+margin_right = 160.0
+margin_bottom = 491.0
+size_flags_vertical = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/RightUI/VBoxContainer/NextBlockUI"]
+margin_right = 160.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 5
+custom_fonts/font = ExtResource( 8 )
+text = "Next"
+align = 1
+valign = 1
+
+[node name="SlotBlockUI" type="Control" parent="CanvasLayer/RightUI/VBoxContainer/NextBlockUI"]
+margin_top = 54.0
+margin_right = 160.0
+margin_bottom = 214.0
+rect_min_size = Vector2( 160, 160 )
+script = ExtResource( 4 )
+
+[node name="SlotBackground" type="TextureRect" parent="CanvasLayer/RightUI/VBoxContainer/NextBlockUI/SlotBlockUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlockPiece" type="TextureRect" parent="CanvasLayer/RightUI/VBoxContainer/NextBlockUI/SlotBlockUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerUI" type="Control" parent="CanvasLayer/RightUI/VBoxContainer"]
+margin_top = 495.0
+margin_right = 160.0
+margin_bottom = 768.0
+size_flags_vertical = 3
+script = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/RightUI/VBoxContainer/TimerUI"]
+wait_time = 10.0
+one_shot = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/RightUI/VBoxContainer/TimerUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/RightUI/VBoxContainer/TimerUI/VBoxContainer"]
+margin_right = 160.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+custom_fonts/font = ExtResource( 8 )
+text = "Timer"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/RightUI/VBoxContainer/TimerUI/VBoxContainer"]
+margin_top = 54.0
+margin_right = 160.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 18 )
+max_value = 10.0
+texture_progress = ExtResource( 7 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PausedMenu" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PausedMenu"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.556863 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PausedMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -75.0
+margin_right = 100.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/PausedMenu/CenterContainer"]
+margin_right = 200.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 200, 150 )
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PausedMenu/CenterContainer"]
+margin_left = 25.0
+margin_top = 10.0
+margin_right = 175.0
+margin_bottom = 140.0
+
+[node name="Label" type="Label" parent="CanvasLayer/PausedMenu/CenterContainer/VBoxContainer"]
+margin_right = 150.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/font = ExtResource( 8 )
+text = "You Lose"
+align = 1
+
+[node name="Message" type="Label" parent="CanvasLayer/PausedMenu/CenterContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 150.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 60 )
+custom_fonts/font = ExtResource( 10 )
+text = "message"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Button" type="Button" parent="CanvasLayer/PausedMenu/CenterContainer/VBoxContainer"]
+margin_top = 98.0
+margin_right = 150.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 150, 30 )
+custom_fonts/font = ExtResource( 8 )
+text = "Retry"
+
+[node name="AttackZones" type="Node2D" parent="."]
+
+[node name="HitZones" type="Node2D" parent="."]
+
+[node name="ToRemoveBlocksTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="ToBoardCheckingTimer" to="BoardDisplay" method="_on_ToBoardCheckingTimer_timeout"]
+[connection signal="timeout" from="CanvasLayer/RightUI/VBoxContainer/TimerUI/Timer" to="CanvasLayer/RightUI/VBoxContainer/TimerUI" method="_on_Timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/PausedMenu/CenterContainer/VBoxContainer/Button" to="CanvasLayer/PausedMenu" method="_on_Button_pressed"]
+[connection signal="timeout" from="ToRemoveBlocksTimer" to="BoardDisplay" method="_on_ToRemoveBlocksTimer_timeout"]

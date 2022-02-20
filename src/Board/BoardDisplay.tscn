@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Board/BoardDisplay.gd" type="Script" id=1]
+
+[node name="BoardDisplay" type="Node2D"]
+script = ExtResource( 1 )
+x_start = 100
+y_start = 100
+offset = 100
